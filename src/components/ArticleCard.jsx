@@ -1,7 +1,7 @@
 import React from "react";
 
 const ArticleCard = ({ article }) => {
-  console.log(article);
+
   return (
     <div className="article-card">
       <img
