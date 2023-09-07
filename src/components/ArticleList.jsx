@@ -5,7 +5,8 @@ import { getArticles } from '../utils/api'
 import { Link } from 'react-router-dom'
 
 const ArticleList = ({topic}) => {
-  
+  const [isLoading,setIsLoading] = useState(false)
+  const [isError,setIsError] = useState(false)
     const [articlesToView, setArticlesToView] = useState([])
 
     useEffect(() => {
@@ -18,10 +19,10 @@ const ArticleList = ({topic}) => {
   return (
     <ul className='article-list'>
         {articlesToView.map((article) => (
-
-          <Link to={`/articles/${article.article_id}`} key={article.id} >
-            <ArticleCard article={article} />
-            </Link>
+            <li key={article.article_id} >
+              <Link to ={`/articles/${article.article_id}`}>
+              <ArticleCard article={article} /></Link>
+              </li>
         ))}
         <ArticleAdder />
     </ul>

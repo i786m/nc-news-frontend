@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleById } from "../utils/api";
+import Comments from "./Comments";
 
 const Article = () => {
   const { article_id } = useParams();
   const [article, setArticle] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  console.log(article_id);
+
 
   useEffect(() => {
     getArticleById(article_id).then((returnedArticle) =>
@@ -14,7 +15,6 @@ const Article = () => {
     );
   }, [article_id]);
 
-  console.log(article);
 
   return (
     <>
@@ -31,6 +31,9 @@ const Article = () => {
       <p className="article-body">{article.body}</p>
       <span className="article-comment">💬 {article.comment_count}</span>
       <span className="article-votes">👍 {article.votes}</span>
+
+      <Comments article_id={article_id}/>
+      
     </>
   );
 };

@@ -15,7 +15,7 @@ const Navbar = ({setTopic}) => {
         <li><Link to = {`/`}>Home</Link></li>
         {topics.map(topic => (
             <li key={topic.slug} onClick={() => setTopic(topic)}>
-              <Link to={`/articles`}>
+              <Link to={`/`}>
               {topic.slug[0].toUpperCase() + topic.slug.slice(1)}
               </Link> 
             </li>
