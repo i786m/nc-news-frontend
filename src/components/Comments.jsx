@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getComments } from "../utils/api";
+import CommentAdder from "./CommentAdder";
 
 const Comments = ({ article_id }) => {
   const [Comments, setComments] = useState([]);
@@ -8,10 +9,11 @@ const Comments = ({ article_id }) => {
     getComments(article_id).then((returnedComments) =>
       setComments(returnedComments)
     );
-  }, []);
+  }, [article_id]);
   return (
     <>
       <h3>Comments</h3>
+      <CommentAdder article_id={article_id} setComments={setComments}/>
       <ul>
         {Comments.map((comment) => {
             return (
