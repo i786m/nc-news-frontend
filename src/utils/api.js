@@ -13,6 +13,6 @@ export const getTopics = () => axios.get(`${BASE_URL}/topics`).then(({data}) => 
 
 export const getComments = (id) => axios.get(`${BASE_URL}/articles/${id}/comments`).then(({data}) => data.comments)
 
-export const postComment = () => {console.log('in the api call');}
+export const postComment = (id,comment) => axios.post(`${BASE_URL}/articles/${id}/comments`, comment).then(({data})=>data.comment)
 
-export const postVote = () => {console.log('in the api call');}
+export const putVote = (id,vote) => axios.patch(`${BASE_URL}/articles/${id}`, vote).then(({data}) => data.article)
