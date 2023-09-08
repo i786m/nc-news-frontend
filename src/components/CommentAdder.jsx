@@ -1,8 +1,28 @@
-import React from 'react'
+import React, { useState, useContext } from 'react'
+import { UserContext } from '../contexts/User'
+import { postComment } from '../utils/api'
+UserContext
 
-const CommentAdder = () => {
+const CommentAdder = ({article_id,setComments}) => {
+  const [comment, setComment] = useState  ('')
+  const {user} = useContext(UserContext)
+  
+  const handleChange = (e) => {
+    setComment(e.target.value)
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const newComment = {body:comment, username:user}
+    setComments(comments=> [{comment_id:'newComment', body:comment, author:user}, ...comments])
+    setComment('')
+    postComment(article_id,newComment)
+   
+  }
   return (
-    <div>CommentAdder</div>
+    <form onSubmit={handleSubmit}>
+      <input onChange={handleChange} value={comment}></input>
+      <button>Add Comment</button>
+    </form>
   )
 }
 
