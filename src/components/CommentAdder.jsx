@@ -12,8 +12,9 @@ const CommentAdder = ({article_id,setComments}) => {
   }
   const handleSubmit = (e) => {
     e.preventDefault()
+   
+    setComments(comments=> [{comment_id:'newComment', body:comment, author:user, votes:0}, ...comments])
     const newComment = {body:comment, username:user}
-    setComments(comments=> [{comment_id:'newComment', body:comment, author:user}, ...comments])
     setComment('')
     postComment(article_id,newComment)
    
